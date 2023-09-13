@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "TKWeb_Lab1/1.0.0": {
+        "runtime": {
+          "TKWeb_Lab1.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TKWeb_Lab1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
