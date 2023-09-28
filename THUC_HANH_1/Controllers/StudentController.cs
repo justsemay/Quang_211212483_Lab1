@@ -45,7 +45,6 @@ namespace THUC_HANH_1.Controllers
         {
             return View(listStudents);
         }
-
         [HttpGet("Add")]
         public IActionResult Create()
         {
@@ -54,17 +53,35 @@ namespace THUC_HANH_1.Controllers
             //lấy danh sách các giá trị Branch để hiển thị select-option trên form
             //Để hiển thị select-option trên View cần dùng List<SelectListItem>
             ViewBag.AllBranches = new List<SelectListItem>()
-                {
-                new SelectListItem { Text = "IT", Value = "1" },
-                new SelectListItem { Text = "BE", Value = "2" },
-                new SelectListItem { Text = "CE", Value = "3" },
-                new SelectListItem { Text = "EE", Value = "4" }
-                };
+        {
+        new SelectListItem { Text = "IT", Value = "1" },
+        new SelectListItem { Text = "BE", Value = "2" },
+        new SelectListItem { Text = "CE", Value = "3" },
+        new SelectListItem { Text = "EE", Value = "4" }
+        };
 
             return View();
         }
 
         [HttpPost("Add")]
+        public IActionResult Create(Student s)
+        {
+            if (ModelState.IsValid)
+            {
+                s.Id = listStudents.Last<Student>().Id + 1;
+                listStudents.Add(s);
+                return View("Index", listStudents);
+            }
+            ViewBag.AllGenders = Enum.GetValues(typeof(Gender)).Cast<Gender>().ToList();
+            ViewBag.AllBranches = new List<SelectListItem>()
+            {
+                    new SelectListItem { Text = "IT", Value = "1" },
+                    new SelectListItem { Text = "BE", Value = "2" },
+                    new SelectListItem { Text = "CE", Value = "3" },
+                    new SelectListItem { Text = "EE", Value = "4" }
+            };
+            return View();
+        }
         public async Task<IActionResult> Create(Student s, IFormFile avatarfile)
         {
             if (avatarfile != null)
